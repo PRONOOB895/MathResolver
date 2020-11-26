@@ -11,12 +11,14 @@ public class Run {
 
         System.out.println("[===========================================]");
         System.out.println("[*] 1.- Ecuaciónes. \n[*] 2.- Cuadrado de un binomio. \n[*] 3.- Áreas y Perímetros");
+        System.out.println("[*] 4.- Calculadora aritmética.");
         System.out.print("[*] Introduzca una opción: ");
 
         switch (sc.nextInt()) {
             case 1 -> Opciones.ecuaciones();
             case 2 -> Opciones.binomioAlCuadrado();
             case 3 -> Opciones.areasYPerimetros();
+            case 4 -> Opciones.calculadora();
             default -> System.err.println("[!] Error, el rango va del...");
         }
     }

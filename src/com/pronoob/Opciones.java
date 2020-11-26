@@ -1,5 +1,6 @@
 package com.pronoob;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Opciones {
@@ -17,22 +18,20 @@ public class Opciones {
         System.out.print("[*] Introduzca el valor de c: "); c = sc.nextDouble();
         System.out.print("[*] El valor de x es: ");
 
-        if (op == 1) {
-            System.out.println((c-b)/a);
-        }
-        else if (op == 2) {
-            double discriminant = b*b-4*a*c;
+        switch (op) {
+            case 1 -> System.out.println((c - b) / a);
+            case 2 -> {
+                double discriminant = b * b - 4 * a * c;
 
-            if (discriminant < 0) {
-                System.out.println("NaN, NaN\n[!] La ecuacion no tiene raices reales");
+                if (discriminant < 0) {
+                    System.out.println("NaN, NaN\n[!] La ecuacion no tiene raices reales");
+                }
+                else {
+                    System.out.printf("%.4f%s", (-b + Math.sqrt(discriminant)) / (2 * a), ", ");
+                    System.out.printf("%.4f", (-b - Math.sqrt(discriminant)) / (2 * a));
+                }
             }
-            else {
-                System.out.printf("%.4f%s", (-b + Math.sqrt(discriminant)) / (2*a), ", ");
-                System.out.printf("%.4f", (-b - Math.sqrt(discriminant)) / (2*a));
-            }
-        }
-        else {
-            System.err.println("[!] Error, el rango va del 1 al 2");
+            default -> System.err.println("[!] Error, el rango va del 1 al 2");
         }
     }
 
@@ -45,16 +44,12 @@ public class Opciones {
         System.out.print("[*] Introduzca el valor de a: "); a = sc.nextDouble();
         System.out.print("[*] Introduzca el valor de b: "); b = sc.nextDouble();
 
-        if (op == 1) {
-            System.out.printf(getFormat(a, b), "[*] El cuadrado del binomio es: ", a*a,
-                    " + ", 2*a*b, "x + ", b*b, "x^2");
-        }
-        else if (op == 2) {
-            System.out.printf(getFormat(a, b), "[*] El cuadrado del binomio es: ", a*a,
-                    " - ", 2*a*b, "x + ", b*b, "x^2");
-        }
-        else {
-            System.err.println("[!] Error, el rango va del 1 al 2.");
+        switch (op) {
+            case 1 -> System.out.printf(getFormat(a, b), "[*] El cuadrado del binomio es: ", a * a,
+                    " + ", 2 * a * b, "x + ", b * b, "x^2");
+            case 2 -> System.out.printf(getFormat(a, b), "[*] El cuadrado del binomio es: ", a * a,
+                    " - ", 2 * a * b, "x + ", b * b, "x^2");
+            default -> System.err.println("[!] Error, el rango va del 1 al 2.");
         }
     }
 
@@ -64,36 +59,98 @@ public class Opciones {
         System.out.println("[#] Fórmula 3: Área y circunferencia de un circulo.");
         System.out.print("[*] Introduzca una opción: "); op = sc.nextInt();
 
-        if (op == 1) {
-            double largo, ancho;
+        switch (op) {
+            case 1 -> {
+                double width, height;
 
-            System.out.print("[*] Introduzca largo del rectangulo: "); largo = sc.nextDouble();
-            System.out.print("[*] Introduzca ancho del rectangulo: "); ancho = sc.nextDouble();
-
-            System.out.println("[*] El área del rectangulo es: " + (ancho * largo));
-            System.out.println("[*] El perímetro del rectangulo es: " + (2 * (ancho + largo)));
+                System.out.print("[*] Introduzca largo del rectangulo: "); width = sc.nextDouble();
+                System.out.print("[*] Introduzca ancho del rectangulo: "); height = sc.nextDouble();
+                System.out.println("[*] El área del rectangulo es: " + (height * width));
+                System.out.println("[*] El perímetro del rectangulo es: " + (2 * (height + width)));
+            }
+            case 2 -> {
+                double a, b, c, perimeter;
+                System.out.print("[*] Introduzca el lado 1 del triangulo: "); a = sc.nextDouble();
+                System.out.print("[*] Introduzca el lado 2 del triangulo: "); b = sc.nextDouble();
+                System.out.print("[*] Introduzca el lado 3 del triangulo: "); c = sc.nextDouble();
+                perimeter = a + b + c;
+                System.out.println("[*] El área del triangulo es: " + Math.sqrt(perimeter / 2 * (perimeter / 2 - a) * (perimeter / 2 - b) * (perimeter / 2 - c)));
+                System.out.println("[*] El perimetro del triangulo es: " + perimeter);
+            }
+            case 3 -> {
+                double r;
+                System.out.print("[*] Introduzca el radio del circulo: "); r = sc.nextDouble();
+                System.out.println("[*] El area del circulo es: " + (Math.PI * r * r));
+                System.out.println("[*] La circunferencia del circulo es: " + (2 * Math.PI * r));
+            }
+            default -> System.err.println("[!] Error, el rango va del 1 al 3.");
         }
-        else if (op == 2) {
-            double a, b, c, perimetro;
+    }
 
-            System.out.print("[*] Introduzca el lado 1 del triangulo: "); a = sc.nextDouble();
-            System.out.print("[*] Introduzca el lado 2 del triangulo: "); b = sc.nextDouble();
-            System.out.print("[*] Introduzca el lado 3 del triangulo: "); c = sc.nextDouble();
-            perimetro = a + b + c;
+    public static void calculadora() {
+        System.out.println("\n" + "[#] Fórmula 1: Sumar los números." + "\n" + "[#] Fórmula 2: Restar los números.");
+        System.out.println("[#] Fórmula 3: Multiplicar los números: " + "\n" + "[#] Fórmula 4: Dividir los números.");
+        System.out.println("[#] Förmula 5: Módulo/residuo de los números.");
+        System.out.print("[*] Introduzca una opción: "); op = Integer.parseInt(sc.nextLine());
 
-            System.out.println("[*] El área del triangulo es: " + Math.sqrt(perimetro/2*(perimetro/2-a)*(perimetro/2-b)*(perimetro/2-c)));
-            System.out.println("[*] El perimetro del triangulo es: " + perimetro);
-        }
-        else if (op == 3) {
-            double r;
 
-            System.out.print("[*] Introduzca el radio del circulo: "); r = sc.nextDouble();
+        double answer = 0;
+        switch (op) {
+            case 1 -> {
+                System.out.print("[*] Introduzca que números desea sumar: ");
 
-            System.out.println("[*] El area del circulo es: " + (Math.PI*r*r));
-            System.out.println("[*] La circunferencia del circulo es: " + (2*Math.PI*r));
-        }
-        else {
-            System.err.println("[!] Error, el rango va del 1 al 3.");
+                String[] input = sc.nextLine().split(" ");
+
+                for (String s : input) answer += Double.parseDouble(s);
+
+                System.out.println("[*] Secuencia de números introducidos: " + Arrays.toString(input));
+                System.out.println("[*] Suma de toda la secuencia: " + answer);
+            }
+            case 2 -> {
+                System.out.print("[*] Introduzca que números desea restar: ");
+
+                String[] input = sc.nextLine().split(" ");
+                answer = Double.parseDouble(input[0]);
+
+                for (int i = 1; i < input.length; i++) answer -= Double.parseDouble(input[i]);
+
+                System.out.println("[*] Secuencia de números introducidos: " + Arrays.toString(input));
+                System.out.println("[*] Resta de toda la secuencia: " + answer);
+            }
+            case 3 -> {
+                System.out.print("[*] Introduzca que números desea multiplicar: ");
+
+                String[] input = sc.nextLine().split(" ");
+                answer = Double.parseDouble(input[0]);
+
+                for (int i = 1; i < input.length; i++) answer *= Double.parseDouble(input[i]);
+
+                System.out.println("[*] Secuencia de números introducidos: " + Arrays.toString(input));
+                System.out.println("[*] Multiplicación de toda la secuencia: " + answer);
+            }
+            case 4 -> {
+                System.out.print("[*] Introduzca que números desea dividir: ");
+
+                String[] input = sc.nextLine().split(" ");
+                answer = Double.parseDouble(input[0]);
+
+                for (int i = 1; i < input.length; i++) answer /= Double.parseDouble(input[i]);
+
+                System.out.println("[*] Secuencia de números introducidos: " + Arrays.toString(input));
+                System.out.println("[*] División de toda la secuencia: " + answer);
+            }
+            case 5 -> {
+                System.out.print("[*] Introduzca números para saber sus modulos: ");
+
+                String[] input = sc.nextLine().split(" ");
+                answer = Double.parseDouble(input[0]);
+
+                for (int i = 1; i < input.length; i++) answer %= Double.parseDouble(input[i]);
+
+                System.out.println("[*] Secuencia de números introducidos: " + Arrays.toString(input));
+                System.out.println("[*] Modulo de toda la secuencia: " + answer);
+            }
+            default -> System.err.println("[!] Error, el rango va del 1 al 5.");
         }
     }
 
