@@ -38,8 +38,8 @@ public class Opciones {
     public static void binomioAlCuadrado() {
         double a, b;
 
-        System.out.println("[#] Fórmula 1: (a + bx)^2" + "\n" + "[#]: Fórmula 2: (a - bx)^2");
-        System.out.print("[*]: Introduzca una opción: "); op = sc.nextInt();
+        System.out.println("[#] Fórmula 1: (a + bx)^2" + "\n" + "[#] Fórmula 2: (a - bx)^2");
+        System.out.print("[*] Introduzca una opción: "); op = sc.nextInt();
 
         System.out.print("[*] Introduzca el valor de a: "); a = sc.nextDouble();
         System.out.print("[*] Introduzca el valor de b: "); b = sc.nextDouble();
@@ -88,11 +88,10 @@ public class Opciones {
     }
 
     public static void calculadora() {
-        System.out.println("\n" + "[#] Fórmula 1: Sumar los números." + "\n" + "[#] Fórmula 2: Restar los números.");
+        System.out.println("[#] Fórmula 1: Sumar los números." + "\n" + "[#] Fórmula 2: Restar los números.");
         System.out.println("[#] Fórmula 3: Multiplicar los números: " + "\n" + "[#] Fórmula 4: Dividir los números.");
         System.out.println("[#] Förmula 5: Módulo/residuo de los números.");
         System.out.print("[*] Introduzca una opción: "); op = Integer.parseInt(sc.nextLine());
-
 
         double answer = 0;
         switch (op) {
@@ -152,6 +151,15 @@ public class Opciones {
             }
             default -> System.err.println("[!] Error, el rango va del 1 al 5.");
         }
+    }
+
+    public static void teoremaDePitagoras() {
+        double side1, side2;
+
+        System.out.print("[*] Introduce la longitud del primer cateto: "); side1 = sc.nextDouble();
+        System.out.print("[*] Introduce la longitud del segundo cateto: "); side2 = sc.nextDouble();
+
+        System.out.println("[*] La hipotenusa del triangulo mide: " + Math.sqrt(side1*side1 + side2*side2));
     }
 
     private static String getFormat(double a, double b) {
